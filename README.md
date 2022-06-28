@@ -47,11 +47,11 @@
 
 ::browsersync::
 
-  ➤ npm i --save-dev browsersync
+  ➤ npm install browser-sync --save-dev
 
 ::imagemin::
 
-  Oprimizador de Imagenes, de todo tipo con sus plugins para cada tipo de imagen ()
+  Optimizador de Imagenes, de todo tipo con sus plugins para cada tipo de imagen ()
 
   ● Link: https://www.npmjs.com/package/gulp-imagemin
 
