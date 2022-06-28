@@ -64,7 +64,6 @@
 ----------------------------------------
 ➥ Codigo gulpfile.js:
 ----------------------------------------
-
 /* Importar */
 const { src, dest, watch, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
@@ -81,15 +80,15 @@ const browsersync = require('browser-sync').create();
 
 //Sass
 function scssTask(){
-  return src('dev/scss/style.scss',{sourcemaps: true})
-    .pipe(sass())
+  return src('src/scss/style.scss',{sourcemaps: true})
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(postcss([cssnano()]))
     .pipe(dest('public/css',{sourcemaps:'.'}));
 }
 
 //Pug
 function pugTask(){
-  return src('dev/views/**/*.pug')
+  return src('src/views/**/*.pug')
     .pipe(pug())
     .pipe(dest('public/'));
 }
@@ -111,17 +110,17 @@ function browsersyncReload(cb){
 
 //Imagemin
 function imageminOptimized (){
-  return src('dev/assets/**/*')
+  return src('src/assets/**/*')
     .pipe(imagemin([imageminPngquant({quality: [0.3, 0.5]})]))
     .pipe(dest('public/assets/'))
 }
 
 
 function watchTask(){
-  watch('dev/assets/**/*' ,series(imageminOptimized, browsersyncReload));
+  watch('src/assets/**/*' ,series(imageminOptimized, browsersyncReload));
   watch('public/*.html' , browsersyncReload);
-  watch('dev/views/**/*.pug' ,series(pugTask, browsersyncReload));
-  watch(['dev/scss/**/*.scss'],series(scssTask,browsersyncReload));
+  watch('src/views/**/*.pug' ,series(pugTask, browsersyncReload));
+  watch(['src/scss/**/*.scss'],series(scssTask,browsersyncReload));
 }
 
 //Task gulp default
@@ -134,6 +133,11 @@ exports.default = series(
   imageminOptimized,
   watchTask
 );
+//Task  unica para optimizar las imagenes
+exports.image = imageminOptimized;
+
+
+  ➤ https://cosasdedevs.com/posts/automatizar-tareas-gulpjs/
 
 
 
