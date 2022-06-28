@@ -78,6 +78,15 @@ const browsersync = require('browser-sync').create();
 
 /* Task */
 
+const { src, dest, watch, series } = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
+const pug = require('gulp-pug');
+const postcss = require('gulp-postcss');
+const cssnano = require('cssnano');
+const imagemin = require('gulp-imagemin') 
+const imageminPngquant = require('imagemin-pngquant');
+const browsersync = require('browser-sync').create();
+
 //Sass
 function scssTask(){
   return src('src/scss/style.scss',{sourcemaps: true})
@@ -117,13 +126,13 @@ function imageminOptimized (){
 
 
 function watchTask(){
-  watch('src/assets/**/*' ,series(imageminOptimized, browsersyncReload));
   watch('public/*.html' , browsersyncReload);
-  watch('src/views/**/*.pug' ,series(pugTask, browsersyncReload));
-  watch(['src/scss/**/*.scss'],series(scssTask,browsersyncReload));
+  watch('src/views/**/*.pug' , series(pugTask, browsersyncReload));
+  watch(['src/scss/**/*.scss'], series(scssTask,browsersyncReload));
 }
 
-//Task gulp default
+
+exports.image = imageminOptimized;
 
 exports.default = series(
   scssTask,
@@ -133,8 +142,6 @@ exports.default = series(
   imageminOptimized,
   watchTask
 );
-//Task  unica para optimizar las imagenes
-exports.image = imageminOptimized;
 
 
   ➤ https://cosasdedevs.com/posts/automatizar-tareas-gulpjs/
