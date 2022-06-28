@@ -43,11 +43,23 @@
 
   ● Link: https://www.npmjs.com/package/cssnano
 
-  ➤ npm i gulp-cssnano --save-dev
+  ➤ npm i --save-dev gulp-cssnano 
 
 ::browsersync::
 
-  ➤ npm i browsersync
+  ➤ npm i --save-dev browsersync
+
+::imagemin::
+
+  Oprimizador de Imagenes, de todo tipo con sus plugins para cada tipo de imagen ()
+
+  ● Link: https://www.npmjs.com/package/gulp-imagemin
+
+  ➤ npm i --save-dev gulp-imagemin(no funciona)
+
+  ➤ npm i --save-dev gulp-imagemin@7.0.0 (recomendado)
+
+  ➤ npm i --save-dev imagemin-pngquant
   
 ----------------------------------------
 ➥ Codigo gulpfile.js:
@@ -56,10 +68,12 @@
 /* Importar */
 const { src, dest, watch, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
+const pug = require('gulp-pug'); 
 const postcss = require('gulp-postcss');
 const cssnano = require('cssnano');
-/* const pug = require('gulp-pug'); */
-const browsersync = require('browser-sync').create()
+const imagemin = require('gulp-imagemin') 
+const imageminPngquant = require('imagemin-pngquant');
+const browsersync = require('browser-sync').create();
 
 
 
@@ -73,6 +87,14 @@ function scssTask(){
     .pipe(dest('public/css',{sourcemaps:'.'}));
 }
 
+//Pug
+function pugTask(){
+  return src('dev/views/**/*.pug')
+    .pipe(pug())
+    .pipe(dest('public/'));
+}
+
+//Browsersyn
 function browsersyncServe(cb){
   browsersync.init({
     server:{
@@ -87,9 +109,18 @@ function browsersyncReload(cb){
   cb();  
 }
 
+//Imagemin
+function imageminOptimized (){
+  return src('dev/assets/**/*')
+    .pipe(imagemin([imageminPngquant({quality: [0.3, 0.5]})]))
+    .pipe(dest('public/assets/'))
+}
+
 
 function watchTask(){
-  watch('public/index.html' , browsersyncReload);
+  watch('dev/assets/**/*' ,series(imageminOptimized, browsersyncReload));
+  watch('public/*.html' , browsersyncReload);
+  watch('dev/views/**/*.pug' ,series(pugTask, browsersyncReload));
   watch(['dev/scss/**/*.scss'],series(scssTask,browsersyncReload));
 }
 
@@ -97,8 +128,12 @@ function watchTask(){
 
 exports.default = series(
   scssTask,
+  pugTask,
   browsersyncServe,
-  browsersyncReload,
+  browsersyncReload, 
+  imageminOptimized,
   watchTask
 );
+
+
 
