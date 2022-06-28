@@ -65,18 +65,6 @@
 ➥ Codigo gulpfile.js:
 ----------------------------------------
 /* Importar */
-const { src, dest, watch, series } = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const pug = require('gulp-pug'); 
-const postcss = require('gulp-postcss');
-const cssnano = require('cssnano');
-const imagemin = require('gulp-imagemin') 
-const imageminPngquant = require('imagemin-pngquant');
-const browsersync = require('browser-sync').create();
-
-
-
-/* Task */
 
 const { src, dest, watch, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
