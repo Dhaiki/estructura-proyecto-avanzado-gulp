@@ -135,7 +135,9 @@ exports.default = series(
   ➤ https://cosasdedevs.com/posts/automatizar-tareas-gulpjs/
 
 
-##Estructura de Carpetas de SASS o SCSS
+#Estructura de Carpetas de SASS o SCSS
+----------------------------------------
+
 ![alt text](https://i.ibb.co/syJTKMk/Ficheros-SCSS.png)
 
 
