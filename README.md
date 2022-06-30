@@ -134,6 +134,6 @@ exports.default = series(
 
   ➤ https://cosasdedevs.com/posts/automatizar-tareas-gulpjs/
 
-![alt text](https://ibb.co/ChsjbTN)
+![alt text](https://i.ibb.co/syJTKMk/Ficheros-SCSS.png)
 
 
