@@ -5,14 +5,13 @@
 
 ➥ Instalación únicas
     1. npm install --global gulp-cli
-----------------------------------------
 ➥ Instalación que se hace en cada proyecto en el que se quiera usar gulp.
     1. npm init
     2. npm install --save-dev gulp
-----------------------------------------
 ➥ Crear un archivo (gulpfile.js) en el proyecto
-----------------------------------------
+
 ➥ Plugins:
+
 ----------------------------------------
 
 ::pug::
