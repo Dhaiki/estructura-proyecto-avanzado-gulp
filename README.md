@@ -6,17 +6,17 @@
 ➥ ###Instalación únicas
 
     ```shell
-    1. npm install --global gulp-cli
+    npm install --global gulp-cli
     ```
     
 ➥ ###Instalación que se hace en cada proyecto en el que se quiera usar gulp.
 
     ```shell
-    1. npm init
+    npm init
     ```
     
     ```shell
-    2. npm install --save-dev gulp
+    npm install --save-dev gulp
     ```
     
 ### ➥ Crear un archivo (gulpfile.js) en el proyecto
