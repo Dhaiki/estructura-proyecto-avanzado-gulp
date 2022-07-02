@@ -1,15 +1,16 @@
-----------------------------------------
 #Estructura de Proyecto avanzado con Gulp
-----------------------------------------
-## ➥Comandos:
 
-### ➥ Instalación únicas
+----------------------------------------
+## ➥ Comandos:
+----------------------------------------
+
+### Instalación únicas
 
 ```shell
 npm install --global gulp-cli
 ```
 
-### ➥ Instalación que se hace en cada proyecto en el que se quiera usar gulp.
+### Instalación que se hace en cada proyecto en el que se quiera usar gulp.
 
 ```shell
 npm init
@@ -19,15 +20,15 @@ npm init
 npm install --save-dev gulp
 ```
 
-### ➥ Crear un archivo (gulpfile.js) en el proyecto
+### Crear un archivo (gulpfile.js) en el proyecto
 
-## ➥ Plugins:
-
+----------------------------------------
+# ➥ Plugins:
 ----------------------------------------
 
 ## ::pug::
 
-### Complemento Gulp para compilar plantillas Pug. Permitiéndole compilar sus plantillas Pug en HTML o JS, con soporte para plantillas locales, filtros Pug       personalizados, envoltura AMD y otros.
+Complemento Gulp para compilar plantillas Pug. Permitiéndole compilar sus plantillas Pug en HTML o JS, con soporte para plantillas locales, filtros Pug       personalizados, envoltura AMD y otros.
 
 ```shell
 npm install --save-dev gulp-pug
@@ -80,13 +81,11 @@ npm i --save-dev gulp-imagemin@7.0.0 (recomendado)
 npm i --save-dev imagemin-pngquant
 ```
 
-
 ----------------------------------------
 ## ➥ Codigo gulpfile.js:
 ----------------------------------------
 ```shell
 /* Importar */
-
 const { src, dest, watch, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const pug = require('gulp-pug');
@@ -96,7 +95,7 @@ const imagemin = require('gulp-imagemin')
 const imageminPngquant = require('imagemin-pngquant');
 const browsersync = require('browser-sync').create();
 
-//Sass
+// Sass
 function scssTask(){
 return src('src/scss/style.scss',{sourcemaps: true})
 .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
@@ -104,14 +103,14 @@ return src('src/scss/style.scss',{sourcemaps: true})
 .pipe(dest('public/css',{sourcemaps:'.'}));
 }
 
-//Pug
+// Pug
 function pugTask(){
 return src('src/views/**/*.pug')
 .pipe(pug())
 .pipe(dest('public/'));
 }
 
-//Browsersyn
+// Browsersyn
 function browsersyncServe(cb){
 browsersync.init({
 server:{
@@ -126,7 +125,7 @@ browsersync.reload()
 cb();  
 }
 
-//Imagemin
+// Imagemin
 function imageminOptimized (){
 return src('src/assets/**/*')
 .pipe(imagemin([imageminPngquant({quality: [0.3, 0.5]})]))
@@ -155,8 +154,8 @@ watchTask
 
 ➤ https://cosasdedevs.com/posts/automatizar-tareas-gulpjs/
 
-
-#Estructura de Carpetas de SASS o SCSS
+----------------------------------------
+# Estructura de Carpetas de SASS o SCSS
 ----------------------------------------
 
 ![alt text](https://i.ibb.co/syJTKMk/Ficheros-SCSS.png)
