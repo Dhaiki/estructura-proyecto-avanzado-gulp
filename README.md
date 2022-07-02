@@ -23,17 +23,17 @@ npm install --save-dev gulp
 ### Crear un archivo (gulpfile.js) en el proyecto
 
 ----------------------------------------
-# ➥ Plugins:
+## ➥ Plugins:
 ----------------------------------------
 
-## ::pug::
+### ::pug::
 
 Complemento Gulp para compilar plantillas Pug. Permitiéndole compilar sus plantillas Pug en HTML o JS, con soporte para plantillas locales, filtros Pug       personalizados, envoltura AMD y otros.
 
 ```shell
 npm install --save-dev gulp-pug
 ```
-## ::Sass::
+### ::Sass::
 
 Una implementación JavaScript pura de Sass .
 
@@ -41,7 +41,7 @@ Una implementación JavaScript pura de Sass .
 
 ➤ npm i sass gulp-sass --save-dev
 
-## ::postcss::
+### ::postcss::
 
 PostCSS es una herramienta para transformar estilos con complementos JS. Estos complementos pueden filtrar su CSS, admitir variables y mixins, transpilar la sintaxis CSS futura, imágenes en línea y más.
 
@@ -50,7 +50,7 @@ PostCSS es una herramienta para transformar estilos con complementos JS. Estos c
 ```shell
 npm i --save-dev gulp-postcss
 ```
-## ::cssnano::
+### ::cssnano::
 
 cssnano toma su CSS bien formateado y lo ejecuta a través de muchas optimizaciones enfocadas, para garantizar que el resultado final sea lo más pequeño posible para un entorno de producción.
 
@@ -59,16 +59,17 @@ cssnano toma su CSS bien formateado y lo ejecuta a través de muchas optimizacio
 ```shell
 npm i --save-dev gulp-cssnano 
 ```
-## ::browsersync::
+### ::browsersync::
 
 ```shell
 npm install browser-sync --save-dev
 ```
-## ::imagemin::
+### ::imagemin::
 
 Optimizador de Imagenes, de todo tipo con sus plugins para cada tipo de imagen ()
 
 ● Link: https://www.npmjs.com/package/gulp-imagemin
+
 ```shell
 npm i --save-dev gulp-imagemin(no funciona)
 ```
