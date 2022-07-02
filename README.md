@@ -1,15 +1,15 @@
 ----------------------------------------
 # Estructura de Proyecto avanzado con Gulp
 ----------------------------------------
-➥ ##Comandos:
+➥ ## Comandos:
 
-➥ ###Instalación únicas
+➥ ### Instalación únicas
 
     ```shell
     npm install --global gulp-cli
     ```
     
-➥ ###Instalación que se hace en cada proyecto en el que se quiera usar gulp.
+➥ ### Instalación que se hace en cada proyecto en el que se quiera usar gulp.
 
     ```shell
     npm init
@@ -25,11 +25,11 @@
 
 ----------------------------------------
 
-##::pug::
+## ::pug::
 
   ###Complemento Gulp para compilar plantillas Pug. Permitiéndole compilar sus plantillas Pug en HTML o JS, con soporte para plantillas locales, filtros Pug       personalizados, envoltura AMD y otros.
     ```shell
-  ➤ npm install --save-dev gulp-pug
+    npm install --save-dev gulp-pug
     ```
 ::Sass::
 
