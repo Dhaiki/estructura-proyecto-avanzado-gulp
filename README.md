@@ -4,28 +4,33 @@
 ➥ ##Comandos:
 
 ➥ ###Instalación únicas
+
     ```shell
     1. npm install --global gulp-cli
     ```
+    
 ➥ ###Instalación que se hace en cada proyecto en el que se quiera usar gulp.
+
     ```shell
     1. npm init
     ```
+    
     ```shell
     2. npm install --save-dev gulp
     ```
-➥ Crear un archivo (gulpfile.js) en el proyecto
+    
+### ➥ Crear un archivo (gulpfile.js) en el proyecto
 
-➥ Plugins:
+### ➥ Plugins:
 
 ----------------------------------------
 
-::pug::
+##::pug::
 
-  Complemento Gulp para compilar plantillas Pug. Permitiéndole compilar sus plantillas Pug en HTML o JS, con soporte para plantillas locales, filtros Pug personalizados, envoltura AMD y otros.
-
+  ###Complemento Gulp para compilar plantillas Pug. Permitiéndole compilar sus plantillas Pug en HTML o JS, con soporte para plantillas locales, filtros Pug       personalizados, envoltura AMD y otros.
+    ```shell
   ➤ npm install --save-dev gulp-pug
-  
+    ```
 ::Sass::
 
   Una implementación JavaScript pura de Sass .
