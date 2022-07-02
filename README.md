@@ -8,7 +8,7 @@
 ```shell
 npm install --global gulp-cli
 ```
-    
+
 ### ➥ Instalación que se hace en cada proyecto en el que se quiera usar gulp.
 
 ```shell
@@ -18,7 +18,7 @@ npm init
 ```shell
 npm install --save-dev gulp
 ```
-    
+
 ### ➥ Crear un archivo (gulpfile.js) en el proyecto
 
 ### ➥ Plugins:
@@ -27,53 +27,64 @@ npm install --save-dev gulp
 
 ## ::pug::
 
-  ###Complemento Gulp para compilar plantillas Pug. Permitiéndole compilar sus plantillas Pug en HTML o JS, con soporte para plantillas locales, filtros Pug       personalizados, envoltura AMD y otros.
-    ```shell
-    npm install --save-dev gulp-pug
-    ```
-::Sass::
+### Complemento Gulp para compilar plantillas Pug. Permitiéndole compilar sus plantillas Pug en HTML o JS, con soporte para plantillas locales, filtros Pug       personalizados, envoltura AMD y otros.
 
-  Una implementación JavaScript pura de Sass .
+```shell
+npm install --save-dev gulp-pug
+```
+## ::Sass::
 
-  ●Link: https://www.npmjs.com/search?q=sass
+Una implementación JavaScript pura de Sass .
 
-  ➤ npm i sass gulp-sass --save-dev
+● Link: https://www.npmjs.com/search?q=sass
 
-::postcss::
+➤ npm i sass gulp-sass --save-dev
 
-  PostCSS es una herramienta para transformar estilos con complementos JS. Estos complementos pueden filtrar su CSS, admitir variables y mixins, transpilar la sintaxis CSS futura, imágenes en línea y más.
+## ::postcss::
 
-  ● Link: https://www.npmjs.com/package/postcss
+PostCSS es una herramienta para transformar estilos con complementos JS. Estos complementos pueden filtrar su CSS, admitir variables y mixins, transpilar la sintaxis CSS futura, imágenes en línea y más.
 
-  ➤ npm i --save-dev gulp-postcss
+● Link: https://www.npmjs.com/package/postcss
 
-::cssnano::
+```shell
+npm i --save-dev gulp-postcss
+```
+## ::cssnano::
 
-  cssnano toma su CSS bien formateado y lo ejecuta a través de muchas optimizaciones enfocadas, para garantizar que el resultado final sea lo más pequeño posible para un entorno de producción.
+cssnano toma su CSS bien formateado y lo ejecuta a través de muchas optimizaciones enfocadas, para garantizar que el resultado final sea lo más pequeño posible para un entorno de producción.
 
-  ● Link: https://www.npmjs.com/package/cssnano
+● Link: https://www.npmjs.com/package/cssnano
 
-  ➤ npm i --save-dev gulp-cssnano 
+```shell
+npm i --save-dev gulp-cssnano 
+```
+## ::browsersync::
 
-::browsersync::
+```shell
+npm install browser-sync --save-dev
+```
+## ::imagemin::
 
-  ➤ npm install browser-sync --save-dev
+Optimizador de Imagenes, de todo tipo con sus plugins para cada tipo de imagen ()
 
-::imagemin::
+● Link: https://www.npmjs.com/package/gulp-imagemin
+```shell
+npm i --save-dev gulp-imagemin(no funciona)
+```
 
-  Optimizador de Imagenes, de todo tipo con sus plugins para cada tipo de imagen ()
+```shell
+npm i --save-dev gulp-imagemin@7.0.0 (recomendado)
+```
 
-  ● Link: https://www.npmjs.com/package/gulp-imagemin
+```shell
+npm i --save-dev imagemin-pngquant
+```
 
-  ➤ npm i --save-dev gulp-imagemin(no funciona)
 
-  ➤ npm i --save-dev gulp-imagemin@7.0.0 (recomendado)
-
-  ➤ npm i --save-dev imagemin-pngquant
-  
 ----------------------------------------
 ➥ Codigo gulpfile.js:
 ----------------------------------------
+```shell
 /* Importar */
 
 const { src, dest, watch, series } = require('gulp');
@@ -87,62 +98,62 @@ const browsersync = require('browser-sync').create();
 
 //Sass
 function scssTask(){
-  return src('src/scss/style.scss',{sourcemaps: true})
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(postcss([cssnano()]))
-    .pipe(dest('public/css',{sourcemaps:'.'}));
+return src('src/scss/style.scss',{sourcemaps: true})
+.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+.pipe(postcss([cssnano()]))
+.pipe(dest('public/css',{sourcemaps:'.'}));
 }
 
 //Pug
 function pugTask(){
-  return src('src/views/**/*.pug')
-    .pipe(pug())
-    .pipe(dest('public/'));
+return src('src/views/**/*.pug')
+.pipe(pug())
+.pipe(dest('public/'));
 }
 
 //Browsersyn
 function browsersyncServe(cb){
-  browsersync.init({
-    server:{
-      baseDir: 'public/'
-    }
-  });
-  cb();
+browsersync.init({
+server:{
+baseDir: 'public/'
+}
+});
+cb();
 }
 
 function browsersyncReload(cb){
-  browsersync.reload()
-  cb();  
+browsersync.reload()
+cb();  
 }
 
 //Imagemin
 function imageminOptimized (){
-  return src('src/assets/**/*')
-    .pipe(imagemin([imageminPngquant({quality: [0.3, 0.5]})]))
-    .pipe(dest('public/assets/'))
+return src('src/assets/**/*')
+.pipe(imagemin([imageminPngquant({quality: [0.3, 0.5]})]))
+.pipe(dest('public/assets/'))
 }
 
 
 function watchTask(){
-  watch('public/*.html' , browsersyncReload);
-  watch('src/views/**/*.pug' , series(pugTask, browsersyncReload));
-  watch(['src/scss/**/*.scss'], series(scssTask,browsersyncReload));
+watch('public/*.html' , browsersyncReload);
+watch('src/views/**/*.pug' , series(pugTask, browsersyncReload));
+watch(['src/scss/**/*.scss'], series(scssTask,browsersyncReload));
 }
 
 
 exports.image = imageminOptimized;
 
 exports.default = series(
-  scssTask,
-  pugTask,
-  browsersyncServe,
-  browsersyncReload, 
-  imageminOptimized,
-  watchTask
+scssTask,
+pugTask,
+browsersyncServe,
+browsersyncReload, 
+imageminOptimized,
+watchTask
 );
+```
 
-
-  ➤ https://cosasdedevs.com/posts/automatizar-tareas-gulpjs/
+➤ https://cosasdedevs.com/posts/automatizar-tareas-gulpjs/
 
 
 #Estructura de Carpetas de SASS o SCSS
