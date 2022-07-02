@@ -1,23 +1,23 @@
 ----------------------------------------
 # Estructura de Proyecto avanzado con Gulp
 ----------------------------------------
-➥ ## Comandos:
+## ➥Comandos:
 
-➥ ### Instalación únicas
+### ➥ Instalación únicas
 
-    ```shell
-    npm install --global gulp-cli
-    ```
+```shell
+npm install --global gulp-cli
+```
     
-➥ ### Instalación que se hace en cada proyecto en el que se quiera usar gulp.
+### ➥ Instalación que se hace en cada proyecto en el que se quiera usar gulp.
 
-    ```shell
-    npm init
-    ```
-    
-    ```shell
-    npm install --save-dev gulp
-    ```
+```shell
+npm init
+```
+
+```shell
+npm install --save-dev gulp
+```
     
 ### ➥ Crear un archivo (gulpfile.js) en el proyecto
 
