@@ -1,5 +1,5 @@
 ----------------------------------------
-Estructura de Proyecto avanzado con Gulp
+#Estructura de Proyecto avanzado con Gulp
 ----------------------------------------
 ## ➥Comandos:
 
@@ -21,7 +21,7 @@ npm install --save-dev gulp
 
 ### ➥ Crear un archivo (gulpfile.js) en el proyecto
 
-### ➥ Plugins:
+## ➥ Plugins:
 
 ----------------------------------------
 
@@ -82,7 +82,7 @@ npm i --save-dev imagemin-pngquant
 
 
 ----------------------------------------
-➥ Codigo gulpfile.js:
+## ➥ Codigo gulpfile.js:
 ----------------------------------------
 ```shell
 /* Importar */
