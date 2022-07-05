@@ -39,7 +39,9 @@ Una implementación JavaScript pura de Sass .
 
 ● Link: https://www.npmjs.com/search?q=sass
 
-➤ npm i sass gulp-sass --save-dev
+```shell
+npm i sass gulp-sass --save-dev
+```
 
 ### ::postcss::
 
