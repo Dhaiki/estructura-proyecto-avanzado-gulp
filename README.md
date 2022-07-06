@@ -110,57 +110,57 @@ const browsersync = require('browser-sync').create();
 
 // Sass
 function scssTask(){
-return src('src/scss/style.scss',{sourcemaps: true})
-.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-.pipe(postcss([cssnano()]))
-.pipe(dest('public/css',{sourcemaps:'.'}));
+  return src('src/scss/style.scss',{sourcemaps: true})
+  .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+  .pipe(postcss([cssnano()]))
+  .pipe(dest('public/css',{sourcemaps:'.'}));
 }
 
 // Pug
 function pugTask(){
-return src('src/views/**/*.pug')
-.pipe(pug())
-.pipe(dest('public/'));
+  return src('src/views/**/*.pug')
+  .pipe(pug())
+  .pipe(dest('public/'));
 }
 
 //Minify
 function minifyTask(){
-return src('src/views/*.html', { allowEmpty: true }) 
-.pipe(minify(
-{minify: true,
-minifyHTML: {
-collapseWhitespace: true,
-conservativeCollapse: true,}}
-))
-.pipe(dest('public/'))
+  return src('src/views/*.html', { allowEmpty: true }) 
+  .pipe(minify(
+  {minify: true,
+  minifyHTML: {
+  collapseWhitespace: true,
+  conservativeCollapse: true,}}
+  ))
+  .pipe(dest('public/'))
 }
 
 // Browsersyn
 function browsersyncServe(cb){
-browsersync.init({
-server:{
-baseDir: 'public/'
-}
-});
-cb();
+  browsersync.init({
+  server:{
+  baseDir: 'public/'
+  }
+  });
+  cb();
 }
 
 function browsersyncReload(cb){
-browsersync.reload()
-cb();  
+  browsersync.reload()
+  cb();  
 }
 
 // Imagemin
 function imageminOptimized (){
-return src('src/assets/**/*')
-.pipe(imagemin([imageminPngquant({quality: [0.3, 0.5]})]))
-.pipe(dest('public/assets/'))
+  return src('src/assets/**/*')
+  .pipe(imagemin([imageminPngquant({quality: [0.3, 0.5]})]))
+  .pipe(dest('public/assets/'))
 }
 
 function watchTask(){
-watch('public/*.html' , browsersyncReload);
-watch('src/views/**/*.pug' , series(pugTask, browsersyncReload));
-watch(['src/scss/**/*.scss'], series(scssTask,browsersyncReload));
+  watch('public/*.html' , browsersyncReload);
+  watch('src/views/**/*.pug' , series(pugTask, browsersyncReload));
+  watch(['src/scss/**/*.scss'], series(scssTask,browsersyncReload));
 }
 
 exports.minihtml = minifyTask;
@@ -168,12 +168,12 @@ exports.minihtml = minifyTask;
 exports.image = imageminOptimized;
 
 exports.default = series(
-scssTask,
-pugTask,
-browsersyncServe,
-browsersyncReload, 
-imageminOptimized,
-watchTask
+  scssTask,
+  pugTask,
+  browsersyncServe,
+  browsersyncReload, 
+  imageminOptimized,
+  watchTask
 );
 
 ```
