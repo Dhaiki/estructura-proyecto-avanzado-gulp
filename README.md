@@ -42,6 +42,15 @@ Una implementación JavaScript pura de Sass .
 ```shell
 npm i sass gulp-sass --save-dev
 ```
+### ::minifier::
+
+Minify HTML, JS, CSS with html-minifier, terser, clean-css.
+
+● Link: https://www.npmjs.com/package/gulp-minifier
+
+```shell
+npm i --save-dev gulp-minifier
+```
 
 ### ::postcss::
 
@@ -92,6 +101,7 @@ npm i --save-dev imagemin-pngquant
 const { src, dest, watch, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const pug = require('gulp-pug');
+const minify = require('gulp-minifier');
 const postcss = require('gulp-postcss');
 const cssnano = require('cssnano');
 const imagemin = require('gulp-imagemin') 
@@ -111,6 +121,18 @@ function pugTask(){
 return src('src/views/**/*.pug')
 .pipe(pug())
 .pipe(dest('public/'));
+}
+
+//Minify
+function minifyTask(){
+return src('src/views/*.html', { allowEmpty: true }) 
+.pipe(minify(
+{minify: true,
+minifyHTML: {
+collapseWhitespace: true,
+conservativeCollapse: true,}}
+))
+.pipe(dest('public/'))
 }
 
 // Browsersyn
@@ -135,13 +157,13 @@ return src('src/assets/**/*')
 .pipe(dest('public/assets/'))
 }
 
-
 function watchTask(){
 watch('public/*.html' , browsersyncReload);
 watch('src/views/**/*.pug' , series(pugTask, browsersyncReload));
 watch(['src/scss/**/*.scss'], series(scssTask,browsersyncReload));
 }
 
+exports.minihtml = minifyTask;
 
 exports.image = imageminOptimized;
 
@@ -153,6 +175,7 @@ browsersyncReload,
 imageminOptimized,
 watchTask
 );
+
 ```
 
 ➤ https://cosasdedevs.com/posts/automatizar-tareas-gulpjs/
